@@ -1,0 +1,4 @@
+{
+	"name": "efd-transform",
+	"image": "gradle:8.10-jdk17-graal"
+}
