@@ -32,3 +32,6 @@ build
 python_version
 
 src/main/resources/EFD_CONTRIB_*
+
+.idea
+.devcontainer
