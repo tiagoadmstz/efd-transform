@@ -1,16 +1,27 @@
 package io.github.tiagoadmstz.blocks;
 
 import io.github.tiagoadmstz.blocks.c.AberturaBlocoC;
+import io.github.tiagoadmstz.blocks.c.ComplementoConsolidacaoDiariaCofins;
+import io.github.tiagoadmstz.blocks.c.ComplementoConsolidacaoDiariaPis;
+import io.github.tiagoadmstz.blocks.c.ComplementoConsolidacaoDiariaProcRef;
+import io.github.tiagoadmstz.blocks.c.ComplementoOperacaoCofins;
 import io.github.tiagoadmstz.blocks.c.ComplementoOperacaoPisPasep;
+import io.github.tiagoadmstz.blocks.c.ComplementoOperacaoProcRef;
+import io.github.tiagoadmstz.blocks.c.ConsolidacaoDiariaNotas;
 import io.github.tiagoadmstz.blocks.c.ConsolidacaoDocEmitidosEcf;
 import io.github.tiagoadmstz.blocks.c.ConsolidacaoDocEmitidosEcfCofins;
 import io.github.tiagoadmstz.blocks.c.ConsolidacaoDocEmitidosEcfPis;
 import io.github.tiagoadmstz.blocks.c.ConsolidacaoNfeEmitidasPj;
+import io.github.tiagoadmstz.blocks.c.CupomFiscalEletronico;
+import io.github.tiagoadmstz.blocks.c.CupomFiscalEletronicoProcRef;
+import io.github.tiagoadmstz.blocks.c.DetalhamentoCfePisCofins;
+import io.github.tiagoadmstz.blocks.c.DetalhamentoCfePisCofinsUnid;
 import io.github.tiagoadmstz.blocks.c.DetalhamentoConsolidacaoCofins;
 import io.github.tiagoadmstz.blocks.c.DetalhamentoConsolidacaoPisPasep;
 import io.github.tiagoadmstz.blocks.c.DetalhamentoConsolidacaoProcRef;
 import io.github.tiagoadmstz.blocks.c.EncerramentoBlocoC;
 import io.github.tiagoadmstz.blocks.c.EquiapmentoEcf;
+import io.github.tiagoadmstz.blocks.c.IdentificacaoEquipaentoSatCfe;
 import io.github.tiagoadmstz.blocks.c.IdentificacaoEstabelecimentoC;
 import io.github.tiagoadmstz.blocks.c.InformacaoComplementarNF;
 import io.github.tiagoadmstz.blocks.c.ItensDocumento;
@@ -34,6 +45,9 @@ import io.github.tiagoadmstz.blocks.c.RegistroAnaliticoDocumento;
 import io.github.tiagoadmstz.blocks.c.ResumoDiarioCofins;
 import io.github.tiagoadmstz.blocks.c.ResumoDiarioPis;
 import io.github.tiagoadmstz.blocks.c.ResumoDiarioProcReferenciado;
+import io.github.tiagoadmstz.blocks.c.ResumoDiarioSatCfePisCofins;
+import io.github.tiagoadmstz.blocks.c.ResumoDiarioSatCfePisCofinsUnid;
+import io.github.tiagoadmstz.blocks.c.SatCfeProcessoReferenciado;
 import io.github.tiagoadmstz.commons.AbstractEfdBlock;
 import lombok.Data;
 
@@ -86,20 +100,20 @@ public class BlockC extends AbstractEfdBlock {
         blockParts.put("C499", new ArrayList<DetalhamentoConsolidacaoProcRef>(1));
         blockParts.put("C500", new ArrayList<NotaFiscalConsumo>(1));
         blockParts.put("C501", new ArrayList<ComplementoOperacaoPisPasep>(1));
-        blockParts.put("C505", new ArrayList<>(1));
-        blockParts.put("C509", new ArrayList<>(1));
-        blockParts.put("C600", new ArrayList<>(1));
-        blockParts.put("C601", new ArrayList<>(1));
-        blockParts.put("C605", new ArrayList<>(1));
-        blockParts.put("C609", new ArrayList<>(1));
-        blockParts.put("C800", new ArrayList<>(1));
-        blockParts.put("C810", new ArrayList<>(1));
-        blockParts.put("C820", new ArrayList<>(1));
-        blockParts.put("C830", new ArrayList<>(1));
-        blockParts.put("C860", new ArrayList<>(1));
-        blockParts.put("C870", new ArrayList<>(1));
-        blockParts.put("C880", new ArrayList<>(1));
-        blockParts.put("C890", new ArrayList<>(1));
+        blockParts.put("C505", new ArrayList<ComplementoOperacaoCofins>(1));
+        blockParts.put("C509", new ArrayList<ComplementoOperacaoProcRef>(1));
+        blockParts.put("C600", new ArrayList<ConsolidacaoDiariaNotas>(1));
+        blockParts.put("C601", new ArrayList<ComplementoConsolidacaoDiariaPis>(1));
+        blockParts.put("C605", new ArrayList<ComplementoConsolidacaoDiariaCofins>(1));
+        blockParts.put("C609", new ArrayList<ComplementoConsolidacaoDiariaProcRef>(1));
+        blockParts.put("C800", new ArrayList<CupomFiscalEletronico>(1));
+        blockParts.put("C810", new ArrayList<DetalhamentoCfePisCofins>(1));
+        blockParts.put("C820", new ArrayList<DetalhamentoCfePisCofinsUnid>(1));
+        blockParts.put("C830", new ArrayList<CupomFiscalEletronicoProcRef>(1));
+        blockParts.put("C860", new ArrayList<IdentificacaoEquipaentoSatCfe>(1));
+        blockParts.put("C870", new ArrayList<ResumoDiarioSatCfePisCofins>(1));
+        blockParts.put("C880", new ArrayList<ResumoDiarioSatCfePisCofinsUnid>(1));
+        blockParts.put("C890", new ArrayList<SatCfeProcessoReferenciado>(1));
         blockParts.put("C990", new EncerramentoBlocoC());
     }
 
@@ -137,6 +151,20 @@ public class BlockC extends AbstractEfdBlock {
         setList("C499", lines, DetalhamentoConsolidacaoProcRef.class);
         setList("C500", lines, NotaFiscalConsumo.class);
         setList("C501", lines, ComplementoOperacaoPisPasep.class);
+        setList("C505", lines, ComplementoOperacaoCofins.class);
+        setList("C509", lines, ComplementoOperacaoProcRef.class);
+        setList("C600", lines, ConsolidacaoDiariaNotas.class);
+        setList("C601", lines, ComplementoConsolidacaoDiariaPis.class);
+        setList("C605", lines, ComplementoConsolidacaoDiariaCofins.class);
+        setList("C609", lines, ComplementoConsolidacaoDiariaProcRef.class);
+        setList("C800", lines, CupomFiscalEletronico.class);
+        setList("C810", lines, DetalhamentoCfePisCofins.class);
+        setList("C820", lines, DetalhamentoCfePisCofinsUnid.class);
+        setList("C830", lines, CupomFiscalEletronicoProcRef.class);
+        setList("C860", lines, IdentificacaoEquipaentoSatCfe.class);
+        setList("C870", lines, ResumoDiarioSatCfePisCofins.class);
+        setList("C880", lines, ResumoDiarioSatCfePisCofinsUnid.class);
+        setList("C890", lines, SatCfeProcessoReferenciado.class);
 
         lines.stream().filter(s -> {
             String[] filter = {"|C001", "|C990"};

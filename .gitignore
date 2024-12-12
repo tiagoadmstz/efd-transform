@@ -28,10 +28,12 @@ replay_pid*
 
 # Ignore Gradle build output directory
 build
+out
 
 python_version
 
 src/main/resources/EFD_CONTRIB_*
+src/main/resources/Sped*
 
 .idea
 .devcontainer
