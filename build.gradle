@@ -1,11 +1,12 @@
 plugins {
     id 'java'
     id 'application'
+    id 'io.freefair.lombok' version '8.4'
 }
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(21)
     }
 }
 
@@ -18,9 +19,23 @@ repositories {
 }
 
 dependencies {
+    compileOnly libs.lombok
+    annotationProcessor libs.lombok
+
+    implementation libs.guava
+    implementation libs.guice
+
+    implementation libs.apacheCommonsLang
+    implementation libs.apacheCommonsIo
+    implementation libs.apachePoi
+    implementation libs.apachePoiOoXml
+    implementation libs.apachePoiOoXmlFull
+    implementation libs.jacksonCore
+    implementation libs.jacksonDatabind
+    implementation libs.jacksonAnnotations
+
     testImplementation libs.junit.jupiter
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    implementation libs.guava
 }
 
 tasks.named('test') {
