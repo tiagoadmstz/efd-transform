@@ -1,7 +1,12 @@
 package io.github.tiagoadmstz.blocks;
 
 import io.github.tiagoadmstz.blocks.one.AberturaBlocoOne;
+import io.github.tiagoadmstz.blocks.one.ControleCreditosFiscaisPisPasep;
+import io.github.tiagoadmstz.blocks.one.DetAjustesBaseCalcMensalPisCofins;
+import io.github.tiagoadmstz.blocks.one.DetalhamentoContribuicoesExibSuspensa;
 import io.github.tiagoadmstz.blocks.one.EncerramentoBlocoOne;
+import io.github.tiagoadmstz.blocks.one.ProcessoReferenciadoAcaoJudicial;
+import io.github.tiagoadmstz.blocks.one.ProcessoReferenciadoProcessoAdministrativo;
 import io.github.tiagoadmstz.commons.AbstractEfdBlock;
 import lombok.Data;
 
@@ -22,10 +27,11 @@ public class BlockOne extends AbstractEfdBlock {
     public BlockOne() {
         blockParts = HashMap.newHashMap(1);
         blockParts.put("1001", new AberturaBlocoOne());
-        blockParts.put("1010", new AberturaBlocoOne());
-        blockParts.put("1011", new ArrayList<>());
-        blockParts.put("1020", new ArrayList<>());
-        blockParts.put("1100", new ArrayList<>());
+        blockParts.put("1010", new ProcessoReferenciadoAcaoJudicial());
+        blockParts.put("1011", new ArrayList<DetalhamentoContribuicoesExibSuspensa>());
+        blockParts.put("1020", new ArrayList<ProcessoReferenciadoProcessoAdministrativo>());
+        blockParts.put("1050", new ArrayList<DetAjustesBaseCalcMensalPisCofins>());
+        blockParts.put("1100", new ArrayList<ControleCreditosFiscaisPisPasep>());
         blockParts.put("1101", new ArrayList<>());
         blockParts.put("1102", new ArrayList<>());
         blockParts.put("1200", new ArrayList<>());
@@ -47,7 +53,10 @@ public class BlockOne extends AbstractEfdBlock {
 
     @Override
     public void setBlock(List<String> lines) {
-//        setList("D100", lines, NotaFiscal.class);
+        setList("1011", lines, DetalhamentoContribuicoesExibSuspensa.class);
+        setList("1020", lines, ProcessoReferenciadoProcessoAdministrativo.class);
+        setList("1050", lines, DetAjustesBaseCalcMensalPisCofins.class);
+        setList("1100", lines, ControleCreditosFiscaisPisPasep.class);
 
         lines.stream().filter(s -> {
             String[] filter = {"|1001", "|1990"};
