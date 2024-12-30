@@ -5,6 +5,7 @@ import io.github.tiagoadmstz.blocks.one.EncerramentoBlocoOne;
 import io.github.tiagoadmstz.commons.AbstractEfdBlock;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +22,26 @@ public class BlockOne extends AbstractEfdBlock {
     public BlockOne() {
         blockParts = HashMap.newHashMap(1);
         blockParts.put("1001", new AberturaBlocoOne());
+        blockParts.put("1010", new AberturaBlocoOne());
+        blockParts.put("1011", new ArrayList<>());
+        blockParts.put("1020", new ArrayList<>());
+        blockParts.put("1100", new ArrayList<>());
+        blockParts.put("1101", new ArrayList<>());
+        blockParts.put("1102", new ArrayList<>());
+        blockParts.put("1200", new ArrayList<>());
+        blockParts.put("1210", new ArrayList<>());
+        blockParts.put("1220", new ArrayList<>());
+        blockParts.put("1300", new ArrayList<>());
+        blockParts.put("1500", new ArrayList<>());
+        blockParts.put("1501", new ArrayList<>());
+        blockParts.put("1502", new ArrayList<>());
+        blockParts.put("1600", new ArrayList<>());
+        blockParts.put("1610", new ArrayList<>());
+        blockParts.put("1620", new ArrayList<>());
+        blockParts.put("1700", new ArrayList<>());
+        blockParts.put("1800", new ArrayList<>());
+        blockParts.put("1809", new ArrayList<>());
+        blockParts.put("1900", new ArrayList<>());
         blockParts.put("1990", new EncerramentoBlocoOne());
     }
 
