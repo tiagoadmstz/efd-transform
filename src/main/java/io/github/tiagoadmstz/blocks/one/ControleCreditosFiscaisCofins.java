@@ -6,12 +6,12 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 /**
- * Registro 1100: Controle de Créditos Fiscais – PIS/PASEP.
+ * Registro 1500: Controle de Créditos Fiscais – COFINS.
  */
 @Data
-public class ControleCreditosFiscaisPisPasep extends AbstractEfdBlockPart {
+public class ControleCreditosFiscaisCofins extends AbstractEfdBlockPart {
 
-    private final String reg = "1100";
+    private final String reg = "1500";
     private String perApuCred;
     private String origCred;
     private String cnpjSuc;

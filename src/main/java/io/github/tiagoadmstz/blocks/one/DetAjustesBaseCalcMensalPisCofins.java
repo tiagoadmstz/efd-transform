@@ -3,6 +3,8 @@ package io.github.tiagoadmstz.blocks.one;
 import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 /**
  * Registro 1050: Detalhamento de Ajustes de Base de Cálculo – Valores Extra Apuração.
  */
@@ -13,18 +15,18 @@ public class DetAjustesBaseCalcMensalPisCofins extends AbstractEfdBlockPart {
     private String dtRef;
     private String indAjBc;
     private String cnpj;
-    private Double vlAjTot;
-    private Double vlAjCst01;
-    private Double vlAjCst02;
-    private Double vlAjCst03;
-    private Double vlAjCst04;
-    private Double vlAjCst05;
-    private Double vlAjCst06;
-    private Double vlAjCst07;
-    private Double vlAjCst08;
-    private Double vlAjCst09;
-    private Double vlAjCst49;
-    private Double vlAjCst99;
+    private BigDecimal vlAjTot;
+    private BigDecimal vlAjCst01;
+    private BigDecimal vlAjCst02;
+    private BigDecimal vlAjCst03;
+    private BigDecimal vlAjCst04;
+    private BigDecimal vlAjCst05;
+    private BigDecimal vlAjCst06;
+    private BigDecimal vlAjCst07;
+    private BigDecimal vlAjCst08;
+    private BigDecimal vlAjCst09;
+    private BigDecimal vlAjCst49;
+    private BigDecimal vlAjCst99;
     private String indAprop;
     private String numRec;
     private String infoCompl;
