@@ -1,6 +1,7 @@
 package io.github.tiagoadmstz.blocks;
 
 import io.github.tiagoadmstz.blocks.m.AberturaBlocoM;
+import io.github.tiagoadmstz.blocks.m.CreditoPisPasepRelativoPeriodo;
 import io.github.tiagoadmstz.blocks.m.EncerramentoBlocoM;
 import io.github.tiagoadmstz.commons.AbstractEfdBlock;
 import lombok.Data;
@@ -22,7 +23,7 @@ public class BlockM extends AbstractEfdBlock {
     public BlockM() {
         blockParts = HashMap.newHashMap(1);
         blockParts.put("M001", new AberturaBlocoM());
-        blockParts.put("M100", new AberturaBlocoM());
+        blockParts.put("M100", new ArrayList<CreditoPisPasepRelativoPeriodo>());
         blockParts.put("M105", new ArrayList<>());
         blockParts.put("M110", new ArrayList<>());
         blockParts.put("M115", new ArrayList<>());
@@ -58,7 +59,7 @@ public class BlockM extends AbstractEfdBlock {
 
     @Override
     public void setBlock(List<String> lines) {
-//        setList("D100", lines, NotaFiscal.class);
+        setList("M100", lines, CreditoPisPasepRelativoPeriodo.class);
 
         lines.stream().filter(s -> {
             String[] filter = {"|M001", "|M990"};
