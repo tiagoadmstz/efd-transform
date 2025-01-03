@@ -18,7 +18,7 @@ public class DetBaseCalculoCredApuradoPisPasep extends AbstractEfdBlockPart {
     private BigDecimal vlBcPisCum;
     private BigDecimal vlBcPisNc;
     private BigDecimal vlBcPis;
-    private Integer quantBcPisTot;
-    private Integer quantBcPis;
+    private Number quantBcPisTot;
+    private Number quantBcPis;
     private String descCred;
 }
