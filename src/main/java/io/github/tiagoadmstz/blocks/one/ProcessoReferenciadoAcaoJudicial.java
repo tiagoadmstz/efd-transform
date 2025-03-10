@@ -1,15 +1,18 @@
 package io.github.tiagoadmstz.blocks.one;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Registro 1010: Processo Referenciado – Ação Judicial.
  */
 @Data
-public class ProcessoReferenciadoAcaoJudicial extends AbstractEfdBlockPart {
+public class ProcessoReferenciadoAcaoJudicial implements EfdBlockPart {
 
-    private final String reg = "1010";
+    private final String register = "1010";
     private String numProc;
     private String idSecJud;
     private String idVara;
@@ -36,4 +39,15 @@ public class ProcessoReferenciadoAcaoJudicial extends AbstractEfdBlockPart {
     private String indNatAcao;
     private String descDecJud;
     private String dtSentJud;
+    private final List<DetalhamentoContribuicoesExibSuspensa> detalhamentoContribuicoesExibSuspensas;
+
+    public ProcessoReferenciadoAcaoJudicial() {
+        this.detalhamentoContribuicoesExibSuspensas = new ArrayList<>(1);
+    }
+
+    @Override
+    public void setByLine(List<String> blockLines) {
+        EfdBlockPart.super.setByLine(blockLines);
+        setPartListByBlock(blockLines, "1011", detalhamentoContribuicoesExibSuspensas, DetalhamentoContribuicoesExibSuspensa.class);
+    }
 }

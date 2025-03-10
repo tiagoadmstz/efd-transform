@@ -1,17 +1,19 @@
 package io.github.tiagoadmstz.blocks.m;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Registro M100: Crédito de PIS/PASEP Relativo ao Período.
  */
 @Data
-public class CreditoPisPasepRelativoPeriodo extends AbstractEfdBlockPart {
+public class CreditoPisPasepRelativoPeriodo implements EfdBlockPart {
 
-    private final String reg = "M100";
+    private final String register = "M100";
     private String codCred;
     /**
      * Indicador de Crédito Oriundo de:
@@ -41,4 +43,18 @@ public class CreditoPisPasepRelativoPeriodo extends AbstractEfdBlockPart {
      */
     private BigDecimal vlCredDesc;
     private BigDecimal sldCred;
+    private final List<DetBaseCalculoCredApuradoPisPasep> detalhamReceitasIsentasContribZeroPisPasep;
+    private final List<AjustesCreditoPisPasepApurado> ajustesCreditoPisPasepApurados;
+
+    public CreditoPisPasepRelativoPeriodo() {
+        this.detalhamReceitasIsentasContribZeroPisPasep = new ArrayList<>(1);
+        this.ajustesCreditoPisPasepApurados = new ArrayList<>(1);
+    }
+
+    @Override
+    public void setByLine(List<String> blockLines) {
+        EfdBlockPart.super.setByLine(blockLines);
+        setPartListByBlock(blockLines, "M105", detalhamReceitasIsentasContribZeroPisPasep, DetBaseCalculoCredApuradoPisPasep.class);
+        setPartListByBlock(blockLines, "M110", ajustesCreditoPisPasepApurados, AjustesCreditoPisPasepApurado.class);
+    }
 }

@@ -1,6 +1,6 @@
 package io.github.tiagoadmstz.blocks.one;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -9,9 +9,9 @@ import java.math.BigDecimal;
  * Registro 1210: Detalhamento da Contribuição Social Extemporânea – PIS/PASEP.
  */
 @Data
-public class DetalhamentoContribSocialExtempPisPasep extends AbstractEfdBlockPart {
+public class DetalhamentoContribSocialExtempPisPasep implements EfdBlockPart {
 
-    private final String reg = "1210";
+    private final String register = "1210";
     private String cnpj;
     private String cstPis;
     private String codPart;

@@ -1,17 +1,19 @@
 package io.github.tiagoadmstz.blocks.m;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Registro M620: Ajustes da COFINS Apurada.
  */
 @Data
-public class AjustesCofinsApurada extends AbstractEfdBlockPart {
+public class AjustesCofinsApurada implements EfdBlockPart {
 
-    private final String reg = "M620";
+    private final String register = "M620";
     /**
      * Indicador do tipo de ajuste:
      * 0- Ajuste de redução;
@@ -23,4 +25,15 @@ public class AjustesCofinsApurada extends AbstractEfdBlockPart {
     private String numDoc;
     private String descrAj;
     private String dtRef;
+    private final List<DetalhamentoAjustesCofinsApurada> detalhamentoAjustesCofinsApuradas;
+
+    public AjustesCofinsApurada() {
+        this.detalhamentoAjustesCofinsApuradas = new ArrayList<>(1);
+    }
+
+    @Override
+    public void setByLine(List<String> blockLines) {
+        EfdBlockPart.super.setByLine(blockLines);
+        setPartListByBlock(blockLines, "M625", detalhamentoAjustesCofinsApuradas, DetalhamentoAjustesCofinsApurada.class);
+    }
 }

@@ -1,6 +1,6 @@
 package io.github.tiagoadmstz.blocks.m;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -9,9 +9,9 @@ import java.math.BigDecimal;
  * Registro M615: Detalhamento dos Ajustes da Base de Cálculo Mensal da COFINS Apurada.
  */
 @Data
-public class DetalhAjustesCalculoMensalCofinsApurada extends AbstractEfdBlockPart {
+public class DetalhAjustesCalculoMensalCofinsApurada implements EfdBlockPart {
 
-    private final String reg = "M615";
+    private final String register = "M615";
     /**
      * Indicador do tipo de ajuste da base de cálculo:
      * 0 - Ajuste de redução;

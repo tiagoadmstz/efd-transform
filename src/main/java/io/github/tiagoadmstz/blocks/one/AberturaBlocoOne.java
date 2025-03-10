@@ -1,15 +1,15 @@
 package io.github.tiagoadmstz.blocks.one;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 /**
  * Registro 1001: Abertura do Bloco 1.
  */
 @Data
-public class AberturaBlocoOne extends AbstractEfdBlockPart {
+public class AberturaBlocoOne implements EfdBlockPart {
 
-    private final String reg = "1001";
+    private final String register = "1001";
     /**
      * Indicador de movimento:
      * 0 - Bloco com dados informados;

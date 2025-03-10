@@ -1,6 +1,6 @@
 package io.github.tiagoadmstz.blocks.one;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -9,9 +9,9 @@ import java.math.BigDecimal;
  * Registro 1050: Detalhamento de Ajustes de Base de Cálculo – Valores Extra Apuração.
  */
 @Data
-public class DetAjustesBaseCalcMensalPisCofins extends AbstractEfdBlockPart {
+public class DetAjustesBaseCalcMensalPisCofins implements EfdBlockPart {
 
-    private final String reg = "1050";
+    private final String register = "1050";
     private String dtRef;
     private String indAjBc;
     private String cnpj;

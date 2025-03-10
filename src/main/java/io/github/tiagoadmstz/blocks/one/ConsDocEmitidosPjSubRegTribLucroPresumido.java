@@ -1,6 +1,6 @@
 package io.github.tiagoadmstz.blocks.one;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -9,9 +9,9 @@ import java.math.BigDecimal;
  * Registro 1900: Consolidação dos Documentos Emitidos no Período por Pessoa Jurídica Submetida ao Regime de Tributação com Base no Lucro Presumido–Regime de Caixa ou de Competência.
  */
 @Data
-public class ConsDocEmitidosPjSubRegTribLucroPresumido extends AbstractEfdBlockPart {
+public class ConsDocEmitidosPjSubRegTribLucroPresumido implements EfdBlockPart {
 
-    private final String reg = "1900";
+    private final String register = "1900";
     private String cnpj;
     private String codMod;
     private String ser;

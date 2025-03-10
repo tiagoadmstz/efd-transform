@@ -1,17 +1,18 @@
 package io.github.tiagoadmstz.blocks.one;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * Registro 1501: Apuração de Crédito Extemporâneo - Documentos e Operações de Períodos Anteriores – COFINS.
  */
 @Data
-public class ApuracaoCrediExtempDocOpCofins extends AbstractEfdBlockPart {
+public class ApuracaoCrediExtempDocOpCofins implements EfdBlockPart {
 
-    private final String reg = "1501";
+    private final String register = "1501";
     private String codPart;
     private String codItem;
     private String codMod;
@@ -33,4 +34,15 @@ public class ApuracaoCrediExtempDocOpCofins extends AbstractEfdBlockPart {
     private String descCompl;
     private String perEscrit;
     private String cnpj;
+    private final DetCredExtempVincTipoReceitaCofins detCredExtempVincTipoReceitaCofins;
+
+    public ApuracaoCrediExtempDocOpCofins() {
+        this.detCredExtempVincTipoReceitaCofins = new DetCredExtempVincTipoReceitaCofins();
+    }
+
+    @Override
+    public void setByLine(List<String> blockLines) {
+        EfdBlockPart.super.setByLine(blockLines);
+        detCredExtempVincTipoReceitaCofins.setByLine(blockLines);
+    }
 }

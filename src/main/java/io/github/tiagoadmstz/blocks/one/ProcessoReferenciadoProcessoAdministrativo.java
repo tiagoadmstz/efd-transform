@@ -1,15 +1,15 @@
 package io.github.tiagoadmstz.blocks.one;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 /**
  * Registro 1020: 	Processo Referenciado – Processo Administrativo.
  */
 @Data
-public class ProcessoReferenciadoProcessoAdministrativo extends AbstractEfdBlockPart {
+public class ProcessoReferenciadoProcessoAdministrativo implements EfdBlockPart {
 
-    private final String reg = "1020";
+    private final String register = "1020";
     private String numProc;
     /**
      * Indicador da Natureza da Ação, decorrente de Processo Administrativo na Secretaria da Receita Federal do Brasil:

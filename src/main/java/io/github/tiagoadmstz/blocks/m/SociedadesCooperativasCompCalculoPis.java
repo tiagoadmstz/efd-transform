@@ -1,6 +1,6 @@
 package io.github.tiagoadmstz.blocks.m;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -9,9 +9,9 @@ import java.math.BigDecimal;
  * Registro M211: Sociedades Cooperativas – Composição da Base de Cálculo – PIS/PASEP
  */
 @Data
-public class SociedadesCooperativasCompCalculoPis extends AbstractEfdBlockPart {
+public class SociedadesCooperativasCompCalculoPis implements EfdBlockPart {
 
-    private final String reg = "M211";
+    private final String register = "M211";
     /**
      * Indicador do Tipo de Sociedade Cooperativa:
      * 01 – Cooperativa de Produção Agropecuária;

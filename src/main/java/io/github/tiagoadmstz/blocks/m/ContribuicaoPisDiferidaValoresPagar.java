@@ -1,6 +1,6 @@
 package io.github.tiagoadmstz.blocks.m;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -9,9 +9,9 @@ import java.math.BigDecimal;
  * Registro M300: Contribuição de PIS/PASEP Diferida em Períodos Anteriores - Valores a Pagar no Período.
  */
 @Data
-public class ContribuicaoPisDiferidaValoresPagar extends AbstractEfdBlockPart {
+public class ContribuicaoPisDiferidaValoresPagar implements EfdBlockPart {
 
-    private final String reg = "M300";
+    private final String register = "M300";
     private String codCont;
     private BigDecimal vlContApurDifer;
     /**

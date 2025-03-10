@@ -79,7 +79,10 @@ public class EfdFile {
         blockD.setByLineNEW(lines);
         blockF.setByLineNEW(lines);
         blockI.setByLineNEW(lines);
-        //getBlocks().forEach(block -> block.setBlock(lines));
+        blockM.setByLineNEW(lines);
+        blockP.setByLineNEW(lines);
+        blockNine.setByLineNEW(lines);
+        blockOne.setByLineNEW(lines);
     }
 
     public String toString() {
@@ -93,9 +96,8 @@ public class EfdFile {
         if (Objects.isNull(blocks)) {
             blocks = Arrays.asList(
                     blockZero,
-                    blockA, blockC, blockD, blockF, blockI
-//                    blockA, blockC, blockD, blockF, blockI, blockM, blockP,
-//                    blockOne, blockNine
+                    blockA, blockC, blockD, blockF, blockI, blockM, blockP,
+                    blockOne, blockNine
             );
         }
         return blocks;

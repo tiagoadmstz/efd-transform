@@ -1,6 +1,6 @@
 package io.github.tiagoadmstz.blocks.m;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -9,9 +9,9 @@ import java.math.BigDecimal;
  * Registro M215: Ajustes da Base de Cálculo da Contribuição para o PIS/Pasep Apurada.
  */
 @Data
-public class AjustesCalculoContribPisApurada extends AbstractEfdBlockPart {
+public class AjustesCalculoContribPisApurada implements EfdBlockPart {
 
-    private final String reg = "M215";
+    private final String register = "M215";
     /**
      * Indicador do tipo de ajuste da base de cálculo:
      * 0 - Ajuste de redução;

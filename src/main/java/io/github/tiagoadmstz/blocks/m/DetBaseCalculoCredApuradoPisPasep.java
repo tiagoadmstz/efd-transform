@@ -1,17 +1,17 @@
 package io.github.tiagoadmstz.blocks.m;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
 
 /**
- * Registro M103: Detalhamento da Base de Cálculo do Crédito Apurado no Período – PIS/PASEP.
+ * Registro M105: Detalhamento da Base de Cálculo do Crédito Apurado no Período – PIS/PASEP.
  */
 @Data
-public class DetBaseCalculoCredApuradoPisPasep extends AbstractEfdBlockPart {
+public class DetBaseCalculoCredApuradoPisPasep implements EfdBlockPart {
 
-    private final String reg = "M105";
+    private final String register = "M105";
     private String natBcCred;
     private String cstPis;
     private BigDecimal vlBcPisTot;

@@ -13,7 +13,7 @@ import io.github.tiagoadmstz.blocks.BlockNine;
 import io.github.tiagoadmstz.blocks.BlockOne;
 import io.github.tiagoadmstz.blocks.BlockP;
 import io.github.tiagoadmstz.blocks.BlockZero;
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import org.reflections.Reflections;
 
 import java.util.ArrayList;
@@ -43,6 +43,6 @@ public class EfdModule extends AbstractModule {
     private void bindBlockZero() {
         bind(BlockZero.class);
         final Reflections reflections = new Reflections(BASE_PACKAGE + ".zero");
-        reflections.getSubTypesOf(AbstractEfdBlockPart.class).forEach(this::bind);
+        reflections.getSubTypesOf(EfdBlockPart.class).forEach(this::bind);
     }
 }

@@ -1,15 +1,15 @@
 package io.github.tiagoadmstz.blocks.one;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 /**
  * Registro 1011: Detalhamento das Contribuições com Exigibilidade Suspensa.
  */
 @Data
-public class DetalhamentoContribuicoesExibSuspensa extends AbstractEfdBlockPart {
+public class DetalhamentoContribuicoesExibSuspensa implements EfdBlockPart {
 
-    private final String reg = "1011";
+    private final String register = "1011";
     private String regRef;
     private String chaveDoc;
     private String codPart;

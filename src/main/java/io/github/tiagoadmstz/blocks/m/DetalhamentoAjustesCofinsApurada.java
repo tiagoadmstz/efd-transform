@@ -1,6 +1,6 @@
 package io.github.tiagoadmstz.blocks.m;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -9,9 +9,9 @@ import java.math.BigDecimal;
  * Registro M625: Detalhamento dos Ajustes da Cofins Apurada.
  */
 @Data
-public class DetalhamentoAjustesCofinsApurada extends AbstractEfdBlockPart {
+public class DetalhamentoAjustesCofinsApurada implements EfdBlockPart {
 
-    private final String reg = "M625";
+    private final String register = "M625";
     private BigDecimal detValorAj;
     private String cstCofins;
     private BigDecimal detBcCred;

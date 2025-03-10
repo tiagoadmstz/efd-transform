@@ -1,15 +1,15 @@
 package io.github.tiagoadmstz.blocks.nine;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 /**
  * Registro 9900:
  */
 @Data
-public class RegistrosArquivo extends AbstractEfdBlockPart {
+public class RegistrosArquivo implements EfdBlockPart {
 
-    private final String reg = "9900";
+    private final String register = "9900";
     private String regTag;
     private String qtdReg;
 }
