@@ -1,6 +1,6 @@
 package io.github.tiagoadmstz.blocks.f;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -9,9 +9,9 @@ import java.math.BigDecimal;
  * Registro F205: Operações da Atividade Imobiliária – Custo Incorrido da Unidade Imobiliária.
  */
 @Data
-public class OpAtividadeImobCustoIncorridoUnidImob extends AbstractEfdBlockPart {
+public class OpAtividadeImobCustoIncorridoUnidImob implements EfdBlockPart {
 
-    private final String reg = "F205";
+    private final String register = "F205";
     private BigDecimal vlCusIncAcumAnt;
     private BigDecimal vlCusIncPerEsc;
     private BigDecimal vlCusIncAcum;

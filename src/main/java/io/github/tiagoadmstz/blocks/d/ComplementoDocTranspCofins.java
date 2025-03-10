@@ -1,6 +1,6 @@
 package io.github.tiagoadmstz.blocks.d;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -9,9 +9,9 @@ import java.math.BigDecimal;
  * Registro D105: .
  */
 @Data
-public class ComplementoDocTranspCofins extends AbstractEfdBlockPart {
+public class ComplementoDocTranspCofins implements EfdBlockPart {
 
-    private final String reg = "D105";
+    private final String register = "D105";
     /**
      * Indicador da Natureza do Frete Contratado, referente a:
      * 0 – Operações de vendas, com ônus suportado pelo estabelecimento vendedor;

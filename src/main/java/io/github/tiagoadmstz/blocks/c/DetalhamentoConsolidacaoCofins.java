@@ -1,6 +1,6 @@
 package io.github.tiagoadmstz.blocks.c;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -9,9 +9,9 @@ import java.math.BigDecimal;
  * Registro C385: Detalhamento da Consolidação – Cofins.
  */
 @Data
-public class DetalhamentoConsolidacaoCofins extends AbstractEfdBlockPart {
+public class DetalhamentoConsolidacaoCofins implements EfdBlockPart {
 
-    private final String reg = "C385";
+    private final String register = "C385";
     private Number cstCofins;
     private String codItem;
     private BigDecimal vlItem;

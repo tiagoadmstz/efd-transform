@@ -1,6 +1,6 @@
 package io.github.tiagoadmstz.blocks.c;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -9,9 +9,9 @@ import java.math.BigDecimal;
  * Registro C199: Complemento do Documento - Operações de Importação (Código 55).
  */
 @Data
-public class OperacaoImportacaoCompl extends AbstractEfdBlockPart {
+public class OperacaoImportacaoCompl implements EfdBlockPart {
 
-    private final String reg = "C199";
+    private final String register = "C199";
     /**
      * Documento de importação:
      * 0 – Declaração de Importação;

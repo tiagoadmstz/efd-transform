@@ -1,14 +1,14 @@
 package io.github.tiagoadmstz.blocks.zero;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 /**
  * Registo 0990: Encerramento do Bloco 0.
  */
 @Data
-public class EncerramentoBloco extends AbstractEfdBlockPart {
+public class EncerramentoBloco implements EfdBlockPart {
 
-    private final String reg = "0990";
+    private final String register = "0990";
     private Number qtdLin0;
 }

@@ -1,14 +1,14 @@
 package io.github.tiagoadmstz.blocks.zero;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 /**
  * Registro 206: Código de Produto Conforme Tabela ANP (Combustíveis).
  */
 @Data
-public class CodigoProdutoANP extends AbstractEfdBlockPart {
+public class CodigoProdutoANP implements EfdBlockPart {
 
-    private final String reg = "0206";
+    private final String register = "0206";
     private String codComb;
 }

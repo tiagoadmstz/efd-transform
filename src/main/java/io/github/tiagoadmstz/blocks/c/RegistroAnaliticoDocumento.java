@@ -1,6 +1,6 @@
 package io.github.tiagoadmstz.blocks.c;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -9,9 +9,9 @@ import java.math.BigDecimal;
  * Registro C175: Registro Analítico do Documento (Código 65).
  */
 @Data
-public class RegistroAnaliticoDocumento extends AbstractEfdBlockPart {
+public class RegistroAnaliticoDocumento implements EfdBlockPart {
 
-    private final String reg = "C175";
+    private final String register = "C175";
     private BigDecimal cfop;
     private BigDecimal vlOpr;
     private BigDecimal vlDesc;

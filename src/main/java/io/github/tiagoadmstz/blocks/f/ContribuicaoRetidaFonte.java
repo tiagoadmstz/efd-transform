@@ -1,6 +1,6 @@
 package io.github.tiagoadmstz.blocks.f;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -9,9 +9,9 @@ import java.math.BigDecimal;
  * Registro F600: Contribuição Retida na Fonte.
  */
 @Data
-public class ContribuicaoRetidaFonte extends AbstractEfdBlockPart {
+public class ContribuicaoRetidaFonte implements EfdBlockPart {
 
-    private final String reg = "F600";
+    private final String register = "F600";
     /**
      * Indicador de Natureza da Retenção na Fonte:
      * 01 - Retenção por Órgãos, Autarquias e Fundações Federais;

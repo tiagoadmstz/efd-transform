@@ -1,6 +1,6 @@
 package io.github.tiagoadmstz.blocks.f;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -9,9 +9,9 @@ import java.math.BigDecimal;
  * Registro F800: Créditos Decorrentes de Eventos de Incorporação, Fusão e Cisão.
  */
 @Data
-public class CredDecEventosIncorporacaoFusaoCisao extends AbstractEfdBlockPart {
+public class CredDecEventosIncorporacaoFusaoCisao implements EfdBlockPart {
 
-    private final String reg = "F800";
+    private final String register = "F800";
     /**
      * Indicador da Natureza do Evento de Sucessão:
      * 01 – Incorporação;

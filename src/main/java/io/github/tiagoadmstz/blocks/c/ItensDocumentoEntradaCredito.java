@@ -1,6 +1,6 @@
 package io.github.tiagoadmstz.blocks.c;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -9,9 +9,9 @@ import java.math.BigDecimal;
  * Registro C396: Itens do Documento (Códigos 02, 2D, 2E, 59, 60 e 65) – Aquisições/Entradas com Crédito.
  */
 @Data
-public class ItensDocumentoEntradaCredito extends AbstractEfdBlockPart {
+public class ItensDocumentoEntradaCredito implements EfdBlockPart {
 
-    private final String reg = "C396";
+    private final String register = "C396";
     private String codItem;
     private BigDecimal vlItem;
     private BigDecimal vlDesc;

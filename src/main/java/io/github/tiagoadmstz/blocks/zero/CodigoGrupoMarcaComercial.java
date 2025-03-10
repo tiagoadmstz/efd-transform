@@ -1,15 +1,15 @@
 package io.github.tiagoadmstz.blocks.zero;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 /**
  * Registro 208: Código de Grupos por Marca Comercial – Refri (bebidas frias)
  */
 @Data
-public class CodigoGrupoMarcaComercial extends AbstractEfdBlockPart {
+public class CodigoGrupoMarcaComercial implements EfdBlockPart {
 
-    private final String reg = "208";
+    private final String register = "208";
     /**
      * Código indicador da Tabela de Incidência, conforme Anexo III do Decreto nº 6.707/08:
      * 01 – Tabela I

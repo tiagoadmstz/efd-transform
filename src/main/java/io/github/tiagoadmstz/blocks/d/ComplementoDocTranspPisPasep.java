@@ -1,6 +1,6 @@
 package io.github.tiagoadmstz.blocks.d;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -9,9 +9,9 @@ import java.math.BigDecimal;
  * Registro D101: Complemento do Documento de Transporte (Códigos 07, 08, 8B, 09, 10, 11, 26, 27, 57, 63 e 67) – PIS/Pasep.
  */
 @Data
-public class ComplementoDocTranspPisPasep extends AbstractEfdBlockPart {
+public class ComplementoDocTranspPisPasep implements EfdBlockPart {
 
-    private final String reg = "D101";
+    private final String register = "D101";
     /**
      * Indicador da Natureza do Frete Contratado, referente a:
      * 0 – Operações de vendas, com ônus suportado pelo estabelecimento vendedor;

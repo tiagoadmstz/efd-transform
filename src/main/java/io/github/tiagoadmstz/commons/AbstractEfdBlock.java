@@ -1,6 +1,7 @@
 package io.github.tiagoadmstz.commons;
 
 import io.github.tiagoadmstz.annotations.EfdBlock;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import io.github.tiagoadmstz.interfaces.IEfdBlock;
 import io.github.tiagoadmstz.interfaces.IEfdBlockPart;
 

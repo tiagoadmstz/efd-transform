@@ -1,15 +1,17 @@
 package io.github.tiagoadmstz.blocks.zero;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * Registro 0110: Regimes de Apuração da Contribuição Social e de Apropriação de Crédito
  */
 @Data
-public class RegimesApuracaoContribuicaoSocial extends AbstractEfdBlockPart {
+public class RegimesApuracaoContribuicaoSocial implements EfdBlockPart {
 
-    private final String reg = "0110";
+    private String register = "0110";
     /**
      * Código indicador da incidência tributária no período:
      * 1 – Escrituração de operações com incidência exclusivamente no regime não-cumulativo;
@@ -36,4 +38,28 @@ public class RegimesApuracaoContribuicaoSocial extends AbstractEfdBlockPart {
      * 9 – Regime de Competência - Escrituração detalhada, com base nos registros dos Blocos “A”, “C”, “D” e “F”.
      */
     private Number indRegCum;
+    /**
+     * O (se no registro 0110 o Campo “COD_INC_TRIB” = 1 ou 3 e o Campo “IND_APRO_CRED” = 2) N (se no registro 0110 o Campo “COD_INC_TRIB” = 2 ou o Campo “IND_APRO_CRED” = 1)
+     */
+    private final ReceitaBrutaMensal receitaBrutaMensal;
+
+    public RegimesApuracaoContribuicaoSocial() {
+        this.receitaBrutaMensal = new ReceitaBrutaMensal();
+    }
+
+    @Override
+    public void setByLine(String valuesLine) {
+        final String[] values = splitLine(valuesLine);
+        codIncTirb = parseNumber(values[2]);
+        indAprovCred = parseNumber(values[3]);
+        codTipoCont = parseNumber(values[4]);
+        if (values.length >= 6) indRegCum = parseNumber(values[5]);
+    }
+
+    @Override
+    public void setByLine(List<String> blockLines) {
+        final List<String> valuesLine = getValuesLine(blockLines, register);
+        if (!valuesLine.isEmpty()) setByLine(valuesLine.getFirst());
+        receitaBrutaMensal.setByLine(blockLines);
+    }
 }

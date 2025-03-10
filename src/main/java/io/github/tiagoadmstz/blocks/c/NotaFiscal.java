@@ -1,18 +1,20 @@
 package io.github.tiagoadmstz.blocks.c;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Registro C100: Documento - Nota Fiscal (Código 01), Nota Fiscal Avulsa (Código 1B), Nota Fiscal de Produtor (Código 04), NF-e (Código 55) e NFC-e (Código 65).
  */
 @Data
-public class NotaFiscal extends AbstractEfdBlockPart {
+public class NotaFiscal implements EfdBlockPart {
 
-    private final String reg = "C100";
+    private final String register = "C100";
     /**
      * Indicador do tipo de operação:
      * 0- Entrada;
@@ -20,7 +22,7 @@ public class NotaFiscal extends AbstractEfdBlockPart {
      */
     private String indOper;
     /**
-     * 	Indicador do emitente do documento fiscal:
+     * Indicador do emitente do documento fiscal:
      * 0- Emissão própria;
      * 1- Terceiros
      */
@@ -86,4 +88,27 @@ public class NotaFiscal extends AbstractEfdBlockPart {
     private BigDecimal vlCofins;
     private BigDecimal vlPisSt;
     private BigDecimal vlCofinsSt;
+    private final List<InformacaoComplementarNF> informacaoComplementarNFList;
+    private final List<ProcessoReferenciado> processoReferenciados;
+    private final List<OperacoesImportacao> operacoesImportacaos;
+    private final List<ItensDocumento> itensDocumentos;
+    private final List<RegistroAnaliticoDocumento> registroAnaliticoDocumentos;
+
+    public NotaFiscal() {
+        informacaoComplementarNFList = new ArrayList<>(1);
+        processoReferenciados = new ArrayList<>(1);
+        operacoesImportacaos = new ArrayList<>(1);
+        itensDocumentos = new ArrayList<>(1);
+        registroAnaliticoDocumentos = new ArrayList<>(1);
+    }
+
+    @Override
+    public void setByLine(List<String> blockLines) {
+        EfdBlockPart.super.setByLine(blockLines);
+        setPartListByBlock(blockLines, "C110", informacaoComplementarNFList, InformacaoComplementarNF.class);
+        setPartListByBlock(blockLines, "C111", processoReferenciados, ProcessoReferenciado.class);
+        setPartListByBlock(blockLines, "C120", operacoesImportacaos, OperacoesImportacao.class);
+        setPartListByBlock(blockLines, "C170", itensDocumentos, ItensDocumento.class);
+        setPartListByBlock(blockLines, "C175", operacoesImportacaos, RegistroAnaliticoDocumento.class);
+    }
 }

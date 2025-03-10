@@ -1,17 +1,19 @@
 package io.github.tiagoadmstz.blocks.f;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Registro F200: Operações da Atividade Imobiliária - Unidade Imobiliária Vendida.
  */
 @Data
-public class OpAtividadeImobUnidadeImobVendida extends AbstractEfdBlockPart {
+public class OpAtividadeImobUnidadeImobVendida implements EfdBlockPart {
 
-    private final String reg = "F200";
+    private final String register = "F200";
     /**
      * Indicador do Tipo da Operação:
      * 01 – Venda a Vista de Unidade Concluída;
@@ -57,4 +59,21 @@ public class OpAtividadeImobUnidadeImobVendida extends AbstractEfdBlockPart {
      */
     private String indNatEmp;
     private String infComp;
+    private final List<OpAtividadeImobCustoIncorridoUnidImob> opAtividadeImobCustoIncorridoUnidImobs;
+    private final List<OpAtividadeImobCustoOrcUnidImobVendida> opAtividadeImobCustoOrcUnidImobVendidas;
+    private final List<ProcRefCustoOrcUnidImobVendida> procRefCustoOrcUnidImobVendidas;
+
+    public OpAtividadeImobUnidadeImobVendida() {
+        this.opAtividadeImobCustoIncorridoUnidImobs = new ArrayList<>(1);
+        this.opAtividadeImobCustoOrcUnidImobVendidas = new ArrayList<>(1);
+        this.procRefCustoOrcUnidImobVendidas = new ArrayList<>(1);
+    }
+
+    @Override
+    public void setByLine(List<String> blockLines) {
+        EfdBlockPart.super.setByLine(blockLines);
+        setPartListByBlock(blockLines, "F205", opAtividadeImobCustoIncorridoUnidImobs, OpAtividadeImobCustoIncorridoUnidImob.class);
+        setPartListByBlock(blockLines, "F210", opAtividadeImobCustoOrcUnidImobVendidas, OpAtividadeImobCustoOrcUnidImobVendida.class);
+        setPartListByBlock(blockLines, "F211", procRefCustoOrcUnidImobVendidas, ProcRefCustoOrcUnidImobVendida.class);
+    }
 }

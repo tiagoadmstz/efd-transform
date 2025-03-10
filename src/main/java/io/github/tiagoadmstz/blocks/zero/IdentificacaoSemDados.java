@@ -1,15 +1,17 @@
 package io.github.tiagoadmstz.blocks.zero;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * Registro 0120: Identificação de EFD-Contribuições Sem Dados a Escriturar.
  */
 @Data
-public class IdentificacaoSemDados extends AbstractEfdBlockPart {
+public class IdentificacaoSemDados implements EfdBlockPart {
 
-    private final String reg = "0120";
+    private final String register = "0120";
     private String mesRefer;
     /**
      * Informação complementar do registro. No caso de escrituração sem dados, deve ser informado o real motivo dessa situação, conforme indicadores abaixo:
@@ -23,4 +25,17 @@ public class IdentificacaoSemDados extends AbstractEfdBlockPart {
      * 99 - Demais hipóteses de dispensa de escrituração, relacionadas no art. 5º, da IN RFB nº 1.252, de 2012
      */
     private String infComp;
+
+    @Override
+    public void setByLine(List<String> blockLines) {
+        final List<String> valuesLine = getValuesLine(blockLines, register);
+        if (!valuesLine.isEmpty()) setByLine(valuesLine.getFirst());
+    }
+
+    @Override
+    public void setByLine(String valuesLine) {
+        final String[] values = splitLine(valuesLine);
+        mesRefer = parseString(values[2]);
+        infComp = parseString(values[3]);
+    }
 }

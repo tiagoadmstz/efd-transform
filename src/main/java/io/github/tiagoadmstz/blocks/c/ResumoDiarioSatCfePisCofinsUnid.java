@@ -1,6 +1,6 @@
 package io.github.tiagoadmstz.blocks.c;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -9,9 +9,9 @@ import java.math.BigDecimal;
  * Registro C880: Resumo Diário de Documentos Emitidos por Equipamento SAT-Cf-e (Código 59) – PIS/Pasep e Cofins Apurado por Unidade de Medida de Produto.
  */
 @Data
-public class ResumoDiarioSatCfePisCofinsUnid extends AbstractEfdBlockPart {
+public class ResumoDiarioSatCfePisCofinsUnid implements EfdBlockPart {
 
-    private final String reg = "C880";
+    private final String register = "C880";
     private String codItem;
     private Number cfop;
     private BigDecimal vlItem;

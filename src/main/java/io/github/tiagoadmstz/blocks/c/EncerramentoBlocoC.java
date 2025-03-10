@@ -1,14 +1,14 @@
 package io.github.tiagoadmstz.blocks.c;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 /**
  * Registro C990: Encerramento do Bloco C
  */
 @Data
-public class EncerramentoBlocoC extends AbstractEfdBlockPart {
+public class EncerramentoBlocoC implements EfdBlockPart {
 
-    private final String reg = "C990";
+    private final String register = "C990";
     private Number qtdLinC;
 }

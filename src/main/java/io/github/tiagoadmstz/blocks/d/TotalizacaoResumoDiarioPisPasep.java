@@ -1,6 +1,6 @@
 package io.github.tiagoadmstz.blocks.d;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -9,9 +9,9 @@ import java.math.BigDecimal;
  * Registro D201: Totalização do Resumo Diário – PIS/Pasep.
  */
 @Data
-public class TotalizacaoResumoDiarioPisPasep extends AbstractEfdBlockPart {
+public class TotalizacaoResumoDiarioPisPasep implements EfdBlockPart {
 
-    private final String reg = "D201";
+    private final String register = "D201";
     private Number cstPis;
     private BigDecimal vlItem;
     private BigDecimal vlBcPis;

@@ -1,18 +1,20 @@
 package io.github.tiagoadmstz.blocks.f;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Registro F100: Demais Documentos e Operações Geradoras de Contribuição e Créditos.
  */
 @Data
-public class DocOpGeradorasContrCred extends AbstractEfdBlockPart {
+public class DocOpGeradorasContrCred implements EfdBlockPart {
 
-    private final String reg = "F100";
+    private final String register = "F100";
     /**
      * Indicador do Tipo da Operação:
      * 0 – Operação Representativa de Aquisição, Custos, Despesa ou Encargos, ou Receitas, Sujeita à Incidência de Crédito de PIS/Pasep ou Cofins (CST 50 a 66).
@@ -42,4 +44,15 @@ public class DocOpGeradorasContrCred extends AbstractEfdBlockPart {
     private String codCta;
     private String codCcus;
     private String descDocOper;
+    private final List<ProcessoReferenciado> processoReferenciados;
+
+    public DocOpGeradorasContrCred() {
+        this.processoReferenciados = new ArrayList<>(1);
+    }
+
+    @Override
+    public void setByLine(List<String> blockLines) {
+        EfdBlockPart.super.setByLine(blockLines);
+        setPartListByBlock(blockLines, "F111", processoReferenciados, ProcessoReferenciado.class);
+    }
 }

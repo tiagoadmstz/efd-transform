@@ -1,18 +1,19 @@
 package io.github.tiagoadmstz.blocks.d;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * Registro D600: Consolidação da Prestação de Serviços - Notas de Serviço de Comunicação (Código 21) e de Serviço de Telecomunicação (Código 22).
  */
 @Data
-public class ConsolidacaoPrestacaoServico extends AbstractEfdBlockPart {
+public class ConsolidacaoPrestacaoServico implements EfdBlockPart {
 
-    private final String reg = "D600";
+    private final String register = "D600";
     private String codMod;
     private Number codMun;
     private String ser;
@@ -44,4 +45,21 @@ public class ConsolidacaoPrestacaoServico extends AbstractEfdBlockPart {
     private BigDecimal vlIcms;
     private BigDecimal vlPis;
     private BigDecimal vlCofins;
+    private final ComplementoConsolidacaoPrestServPis complementoConsolidacaoPrestServPis;
+    private final ComplementoConsolidacaoPrestServCofins complementoConsolidacaoPrestServCofins;
+    private final ConsolidacaoPrestacaoServicoProcRef consolidacaoPrestacaoServicoProcRef;
+
+    public ConsolidacaoPrestacaoServico() {
+        this.complementoConsolidacaoPrestServPis = new ComplementoConsolidacaoPrestServPis();
+        this.complementoConsolidacaoPrestServCofins = new ComplementoConsolidacaoPrestServCofins();
+        this.consolidacaoPrestacaoServicoProcRef = new ConsolidacaoPrestacaoServicoProcRef();
+    }
+
+    @Override
+    public void setByLine(final List<String> blockLines) {
+        EfdBlockPart.super.setByLine(blockLines);
+        complementoConsolidacaoPrestServPis.setByLine(blockLines);
+        complementoConsolidacaoPrestServCofins.setByLine(blockLines);
+        consolidacaoPrestacaoServicoProcRef.setByLine(blockLines);
+    }
 }

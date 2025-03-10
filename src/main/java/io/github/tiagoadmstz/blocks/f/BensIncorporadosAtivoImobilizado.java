@@ -1,17 +1,19 @@
 package io.github.tiagoadmstz.blocks.f;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Registro F120: Bens Incorporados ao Ativo Imobilizado – Operações Geradoras de Créditos com Base nos Encargos de Depreciação e Amortização.
  */
 @Data
-public class BensIncorporadosAtivoImobilizado extends AbstractEfdBlockPart {
+public class BensIncorporadosAtivoImobilizado implements EfdBlockPart {
 
-    private final String reg = "F120";
+    private final String register = "F120";
     /**
      * Código da Base de Cálculo do Crédito sobre Bens Incorporados ao Ativo Imobilizado, conforme a Tabela indicada no item 4.3.7:
      * 09 = Crédito com Base nos Encargos de Depreciação;
@@ -56,4 +58,15 @@ public class BensIncorporadosAtivoImobilizado extends AbstractEfdBlockPart {
     private String codCta;
     private String codCcus;
     private String descBemImob;
+    private final List<ProcessoReferenciadoAtivoImob> processoReferenciadoAtivoImobs;
+
+    public BensIncorporadosAtivoImobilizado() {
+        this.processoReferenciadoAtivoImobs = new ArrayList<>(1);
+    }
+
+    @Override
+    public void setByLine(List<String> blockLines) {
+        EfdBlockPart.super.setByLine(blockLines);
+        setPartListByBlock(blockLines, "F129", processoReferenciadoAtivoImobs, ProcessoReferenciadoAtivoImob.class);
+    }
 }

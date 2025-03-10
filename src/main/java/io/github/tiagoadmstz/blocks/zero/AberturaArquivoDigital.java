@@ -1,9 +1,9 @@
 package io.github.tiagoadmstz.blocks.zero;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.tiagoadmstz.annotations.EfdBlockPart;
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -17,30 +17,44 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
-@EfdBlockPart(register = "0000", order = 1)
-public class AberturaArquivoDigital extends AbstractEfdBlockPart {
+public class AberturaArquivoDigital implements EfdBlockPart {
 
-    private final String reg = "0000";
+    @JsonProperty("registro")
+    private String register = "0000";
+    @JsonProperty("versao")
     private String codVer;
+    @JsonProperty("tipo-escrita")
     private String tipoEscrit;
+    @JsonProperty("ind-sit-esp")
     private String indSitEsp;
+    @JsonProperty("numero-rec-anterior")
     private String numRecAnterior;
+    @JsonProperty("data-inicio")
     private LocalDate dtIni;
+    @JsonProperty("data-final")
     private LocalDate dtFin;
+    @JsonProperty("nome")
     private String nome;
+    @JsonProperty("cnpj")
     private String cnpj;
+    @JsonProperty("uf")
     private String uf;
+    @JsonProperty("codigo-municipio")
     private String codMun;
+    @JsonProperty("suframa")
     private String suframa;
+    @JsonProperty("ind-nat-pessoa-juridica")
     private String indNatPJ;
+    @JsonProperty("ind-ativo")
     private String indAtiv;
 
     public void writeToExcel(String filePath) throws IOException {
         try (Workbook workbook = new XSSFWorkbook()) {
             // Criar uma nova planilha para este objeto FileOpen
-            Sheet sheet = workbook.createSheet(reg);
+            Sheet sheet = workbook.createSheet(register);
 
             // Criar o cabeçalho
             Row headerRow = sheet.createRow(0);
@@ -52,7 +66,7 @@ public class AberturaArquivoDigital extends AbstractEfdBlockPart {
 
             // Criar a linha com os dados
             Row dataRow = sheet.createRow(1);
-            dataRow.createCell(0).setCellValue(reg);
+            dataRow.createCell(0).setCellValue(register);
             dataRow.createCell(1).setCellValue(codVer);
             dataRow.createCell(2).setCellValue(tipoEscrit);
             dataRow.createCell(3).setCellValue(indSitEsp != null ? indSitEsp : "");
@@ -76,7 +90,7 @@ public class AberturaArquivoDigital extends AbstractEfdBlockPart {
 
     public void writeToTxtFile(String filePath) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            writer.write(toTxtFormat());
+            //writer.write(toTxtFormat());
         }
     }
 

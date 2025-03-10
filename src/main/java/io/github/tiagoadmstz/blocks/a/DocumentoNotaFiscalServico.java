@@ -1,18 +1,20 @@
 package io.github.tiagoadmstz.blocks.a;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Registro A100: Documento - Nota Fiscal de Serviço.
  */
 @Data
-public class DocumentoNotaFiscalServico extends AbstractEfdBlockPart {
+public class DocumentoNotaFiscalServico implements EfdBlockPart {
 
-    private final String reg = "A100";
+    private final String register = "A100";
     /**
      * Indicador do tipo de operação:
      * 0 - Serviço Contratado pelo Estabelecimento;
@@ -54,4 +56,24 @@ public class DocumentoNotaFiscalServico extends AbstractEfdBlockPart {
     private BigDecimal vlPisRet;
     private BigDecimal vlCofinsRet;
     private BigDecimal vlIss;
+    private final List<InformacaoComplementarNF> informacaoComplementarNFs;
+    private final List<ProcessoReferenciado> processoReferenciados;
+    private final List<OperacoesImportacao> operacoesImportacaos;
+    private final List<ComplementoDocumentoItem> complementoDocumentoItems;
+
+    public DocumentoNotaFiscalServico() {
+        informacaoComplementarNFs = new ArrayList<>(1);
+        processoReferenciados = new ArrayList<>(1);
+        operacoesImportacaos = new ArrayList<>(1);
+        complementoDocumentoItems = new ArrayList<>(1);
+    }
+
+    @Override
+    public void setByLine(List<String> blockLines) {
+        EfdBlockPart.super.setByLine(blockLines);
+        setPartListByBlock(blockLines, "A110", informacaoComplementarNFs, InformacaoComplementarNF.class);
+        setPartListByBlock(blockLines, "A111", processoReferenciados, ProcessoReferenciado.class);
+        setPartListByBlock(blockLines, "A120", operacoesImportacaos, OperacoesImportacao.class);
+        setPartListByBlock(blockLines, "A170", complementoDocumentoItems, ComplementoDocumentoItem.class);
+    }
 }

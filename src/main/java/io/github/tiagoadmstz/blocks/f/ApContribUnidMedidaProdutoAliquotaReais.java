@@ -1,15 +1,19 @@
 package io.github.tiagoadmstz.blocks.f;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
+import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Registro F510: Consolidação das Operações da Pessoa Jurídica Submetida ao Regime de Tributação Com Base no Lucro Presumido – Incidência do PIS/Pasep e da Cofins pelo Regime de Caixa (Apuração da Contribuição por Unidade de Medida de Produto – Alíquota em Reais).
  */
-public class ApContribUnidMedidaProdutoAliquotaReais extends AbstractEfdBlockPart {
+@Data
+public class ApContribUnidMedidaProdutoAliquotaReais implements EfdBlockPart {
 
-    private final String reg = "F510";
+    private final String register = "F510";
     private BigDecimal vlRecCaixa;
     private Number cstPis;
     private BigDecimal vlDescPis;
@@ -25,4 +29,15 @@ public class ApContribUnidMedidaProdutoAliquotaReais extends AbstractEfdBlockPar
     private String cfop;
     private String codCta;
     private String infoCompl;
+    private final List<ApContribAliquotaReaisPorcRef> incidPisCofinsRegimeCaixaPorcRefs;
+
+    public ApContribUnidMedidaProdutoAliquotaReais() {
+        this.incidPisCofinsRegimeCaixaPorcRefs = new ArrayList<>(1);
+    }
+
+    @Override
+    public void setByLine(List<String> blockLines) {
+        EfdBlockPart.super.setByLine(blockLines);
+        setPartListByBlock(blockLines, "F519", incidPisCofinsRegimeCaixaPorcRefs, ApContribAliquotaReaisPorcRef.class);
+    }
 }

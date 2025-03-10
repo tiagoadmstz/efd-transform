@@ -1,6 +1,6 @@
 package io.github.tiagoadmstz.blocks.d;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -9,9 +9,9 @@ import java.math.BigDecimal;
  * Registro 601: Complemento da Consolidação da Prestação de Serviços (Códigos 21 e 22) - PIS/Pasep.
  */
 @Data
-public class ComplementoConsolidacaoPrestServPis extends AbstractEfdBlockPart {
+public class ComplementoConsolidacaoPrestServPis implements EfdBlockPart {
 
-    private final String reg = "D601";
+    private final String register = "D601";
     private Number codClass;
     private BigDecimal vlItem;
     private BigDecimal vlDesc;

@@ -1,6 +1,6 @@
 package io.github.tiagoadmstz.blocks.c;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -9,9 +9,9 @@ import java.math.BigDecimal;
  * Registro C181: Detalhamento da Consolidação - Operações de Vendas - PIS/Pasep.
  */
 @Data
-public class OperacaoVendasPisPasep extends AbstractEfdBlockPart {
+public class OperacaoVendasPisPasep implements EfdBlockPart {
 
-    private final String reg = "C181";
+    private final String register = "C181";
     private Number cstPis;
     private Number cfop;
     private BigDecimal vlItem;

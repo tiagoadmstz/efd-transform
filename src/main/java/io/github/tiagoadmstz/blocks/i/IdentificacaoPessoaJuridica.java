@@ -1,15 +1,18 @@
 package io.github.tiagoadmstz.blocks.i;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Registro I010: Identificação da Pessoa Jurídica/Estabelecimento.
  */
 @Data
-public class IdentificacaoPessoaJuridica extends AbstractEfdBlockPart {
+public class IdentificacaoPessoaJuridica implements EfdBlockPart {
 
-    private final String reg = "I010";
+    private final String register = "I010";
     private String cnpj;
     /**
      * Indicador de operações realizadas no período:
@@ -22,4 +25,9 @@ public class IdentificacaoPessoaJuridica extends AbstractEfdBlockPart {
      */
     private String indAtiv;
     private String infoCompl;
+    private final List<ConsolidacaoOperacoesPeriodo> consolidacaoOperacoesPeriodos;
+
+    public IdentificacaoPessoaJuridica() {
+        this.consolidacaoOperacoesPeriodos = new ArrayList<>(1);
+    }
 }

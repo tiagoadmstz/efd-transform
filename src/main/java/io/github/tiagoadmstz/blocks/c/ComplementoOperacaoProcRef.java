@@ -1,15 +1,15 @@
 package io.github.tiagoadmstz.blocks.c;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 /**
  * Registro C509: Processo Referenciado.
  */
 @Data
-public class ComplementoOperacaoProcRef extends AbstractEfdBlockPart {
+public class ComplementoOperacaoProcRef implements EfdBlockPart {
 
-    private final String reg = "C509";
+    private final String register = "C509";
     private String numProc;
     /**
      * Indicador da origem do processo:

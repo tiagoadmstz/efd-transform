@@ -1,13 +1,15 @@
 package io.github.tiagoadmstz.blocks.c;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
+import lombok.Data;
 
 /**
  * Registro C198: Processo Referenciado.
  */
-public class OperacaoAquisicaoProcReferenciado extends AbstractEfdBlockPart {
+@Data
+public class OperacaoAquisicaoProcReferenciado implements EfdBlockPart {
 
-    private final String reg = "C198";
+    private final String register = "C198";
     private String numProc;
     /**
      * Indicador da origem do processo:

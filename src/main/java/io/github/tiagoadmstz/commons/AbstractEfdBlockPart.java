@@ -1,12 +1,17 @@
 package io.github.tiagoadmstz.commons;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.github.tiagoadmstz.interfaces.IEfdBlockPart;
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.StringJoiner;
@@ -16,35 +21,66 @@ import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 public abstract class AbstractEfdBlockPart implements IEfdBlockPart {
 
+    @JsonIgnore
+    protected List<String> allLines;
+    @JsonIgnore
     protected final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("ddMMyyyy");
+    @JsonProperty("registro")
+    protected String register;
 
+    protected AbstractEfdBlockPart() {
+    }
+
+    protected AbstractEfdBlockPart(String register) {
+        this.register = register;
+    }
+
+    public String getRegister() {
+        return register;
+    }
+
+    @JsonIgnore
+    @Override
+    public void setByLines(final List<String> lines) {
+        this.allLines = lines;
+        lines.stream()
+                .filter(line -> line.startsWith(register, 1))
+                .forEach(line -> setBySplitedLine(line.split("\\|")));
+    }
+
+    @JsonIgnore
     @Override
     public void setBySplitedLine(String[] fields) {
         try {
-            final Field regField = getClass().getDeclaredField("reg");
-            regField.setAccessible(true);
-            final String regValue = regField.get(this).toString();
+            final String regValue;
+            if (StringUtils.isNotBlank(register)) {
+                regValue = register;
+            } else {
+                final Field regField = getClass().getDeclaredField("reg");
+                regField.setAccessible(true);
+                regValue = regField.get(this).toString();
+            }
 
             if (regValue.equals(fields[1])) {
                 int cont = 2;
-                int fieldsCont = 1;
+                int fieldsCont = 0;
                 final Field[] declaredFields = getClass().getDeclaredFields();
-                if (declaredFields.length > 1) {
+                if (declaredFields.length > 0) {
                     for (int i = 2; i < fields.length; i++) {
-                        if (declaredFields.length != fieldsCont) {
-                            final Field field = declaredFields[fieldsCont++];
-                            field.setAccessible(true);
-                            final String entryValue = fields[cont++];
-                            if (field.getType().equals(Number.class)) {
-                                field.set(this, isNotBlank(entryValue) ? Long.parseLong(entryValue) : null);
-                            } else if (field.getType().equals(BigDecimal.class)) {
-                                final NumberFormat numberFormat = NumberFormat.getInstance(Locale.of("pt", "BR"));
-                                field.set(this, isNotBlank(entryValue) ? new BigDecimal(numberFormat.parse(entryValue).toString()) : null);
-                            } else if (field.getType().equals(LocalDate.class)) {
-                                field.set(this, isNotBlank(entryValue) ? LocalDate.parse(entryValue, dateTimeFormatter) : null);
-                            } else if (field.getType().equals(String.class)) {
-                                field.set(this, defaultIfBlank(entryValue, null));
-                            }
+                        final Field field = declaredFields[fieldsCont++];
+                        field.setAccessible(true);
+                        final String entryValue = fields[cont++];
+                        if (field.getType().equals(Number.class)) {
+                            field.set(this, isNotBlank(entryValue) ? Long.parseLong(entryValue) : null);
+                        } else if (field.getType().equals(BigDecimal.class)) {
+                            final NumberFormat numberFormat = NumberFormat.getInstance(Locale.of("pt", "BR"));
+                            field.set(this, isNotBlank(entryValue) ? new BigDecimal(numberFormat.parse(entryValue).toString()) : null);
+                        } else if (field.getType().equals(LocalDate.class)) {
+                            field.set(this, isNotBlank(entryValue) ? LocalDate.parse(entryValue, dateTimeFormatter) : null);
+                        } else if (field.getType().equals(String.class)) {
+                            field.set(this, defaultIfBlank(entryValue, null));
+                        } else if (field.getType().getSuperclass().equals(AbstractEfdBlockPart.class)) {
+                            ((AbstractEfdBlockPart) field.get(this)).setByLines(allLines);
                         }
                     }
                 }
@@ -54,12 +90,13 @@ public abstract class AbstractEfdBlockPart implements IEfdBlockPart {
         }
     }
 
+    @JsonIgnore
     @Override
     public String toTxtFormat() {
         if (isAllNull()) return null;
         try {
             final StringJoiner stringJoiner = new StringJoiner("|").add("");
-            final Field[] fields = getClass().getDeclaredFields();
+            final Field[] fields = ArrayUtils.addFirst(getClass().getDeclaredFields(), getClass().getSuperclass().getDeclaredField("register"));
             for (Field field : fields) {
                 field.setAccessible(true);
                 final Object value = field.get(this);
@@ -78,6 +115,7 @@ public abstract class AbstractEfdBlockPart implements IEfdBlockPart {
         return null;
     }
 
+    @JsonIgnore
     @Override
     public boolean isAllNull() {
         try {
@@ -95,6 +133,7 @@ public abstract class AbstractEfdBlockPart implements IEfdBlockPart {
         return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isAllNonNull() {
         return !isAllNull();

@@ -1,6 +1,6 @@
 package io.github.tiagoadmstz.blocks.a;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -9,9 +9,9 @@ import java.math.BigDecimal;
  * Registro A170: Complemento do Documento - Itens do Documento.
  */
 @Data
-public class ComplementoDocumentoItem extends AbstractEfdBlockPart {
+public class ComplementoDocumentoItem implements EfdBlockPart {
 
-    private final String reg = "A170";
+    private final String register = "A170";
     private Number numItem;
     private String codItem;
     private String descrCompl;

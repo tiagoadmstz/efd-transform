@@ -1,6 +1,6 @@
 package io.github.tiagoadmstz.blocks.f;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -9,9 +9,9 @@ import java.math.BigDecimal;
  * Registro F150: Crédito Presumido sobre Estoque de Abertura.
  */
 @Data
-public class CreditoPresumidoEstoqueAbertura extends AbstractEfdBlockPart {
+public class CreditoPresumidoEstoqueAbertura implements EfdBlockPart {
 
-    private final String reg = "F150";
+    private final String register = "F150";
     private String natBcCred;
     private BigDecimal vlTotEst;
     private BigDecimal estImp;

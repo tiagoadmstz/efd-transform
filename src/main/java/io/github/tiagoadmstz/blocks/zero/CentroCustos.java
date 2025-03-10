@@ -1,6 +1,6 @@
 package io.github.tiagoadmstz.blocks.zero;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -9,9 +9,9 @@ import java.time.LocalDate;
  * Registro 0600: Centro de Custos.
  */
 @Data
-public class CentroCustos extends AbstractEfdBlockPart {
+public class CentroCustos implements EfdBlockPart {
 
-    private final String reg = "0600";
+    private final String register = "0600";
     private LocalDate dtAlt;
     private String codCcus;
     private String ccus;

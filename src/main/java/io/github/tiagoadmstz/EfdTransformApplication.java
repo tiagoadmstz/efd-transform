@@ -1,5 +1,6 @@
 package io.github.tiagoadmstz;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import io.github.tiagoadmstz.modules.EfdModule;
@@ -17,7 +18,7 @@ public class EfdTransformApplication {
     private final Injector injector = Guice.createInjector(new EfdModule());
 
     public static void main(String[] args) {
-        new EfdTransformApplication().start();
+        new EfdTransformApplication().startNew();
     }
 
     void start() {
@@ -31,6 +32,21 @@ public class EfdTransformApplication {
             System.out.println(efdFile);
         } catch (IOException e) {
             System.err.println("Erro ao ler o arquivo: " + e.getMessage());
+        }
+    }
+
+    void startNew() {
+        try {
+            final File efdInputFile = FileUtils.getFile("src/main/resources/EFD_CONTRIB_26820241644 teste.txt").getAbsoluteFile();
+            final List<String> lines = Files.readAllLines(efdInputFile.toPath(), StandardCharsets.ISO_8859_1);
+            final EfdFile efdFile = injector.getInstance(EfdFile.class);
+            efdFile.setEfdFile(lines);
+            System.out.println(efdFile);
+            /*final ObjectMapper objectMapper = new ObjectMapper();
+            final String efdJson = objectMapper.writeValueAsString(efdFile);
+            System.out.println(efdJson);*/
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

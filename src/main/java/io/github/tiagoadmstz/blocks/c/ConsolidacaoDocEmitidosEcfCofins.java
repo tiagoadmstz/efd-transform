@@ -1,6 +1,6 @@
 package io.github.tiagoadmstz.blocks.c;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -9,9 +9,9 @@ import java.math.BigDecimal;
  * Registro C495: Detalhamento da Consolidação de Documentos Emitidos por ECF (Códigos 02, 2D, 59 e 60) – Cofins.
  */
 @Data
-public class ConsolidacaoDocEmitidosEcfCofins extends AbstractEfdBlockPart {
+public class ConsolidacaoDocEmitidosEcfCofins implements EfdBlockPart {
 
-    private final String reg = "C495";
+    private final String register = "C495";
     private String codItem;
     private Number cstCofins;
     private Number cfop;

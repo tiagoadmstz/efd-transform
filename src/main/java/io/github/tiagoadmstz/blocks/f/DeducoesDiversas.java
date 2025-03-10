@@ -1,6 +1,6 @@
 package io.github.tiagoadmstz.blocks.f;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -9,9 +9,9 @@ import java.math.BigDecimal;
  * Registro F700: Deduções Diversas.
  */
 @Data
-public class DeducoesDiversas extends AbstractEfdBlockPart {
+public class DeducoesDiversas implements EfdBlockPart {
 
-    private final String reg = "F700";
+    private final String register = "F700";
     /**
      * Indicador de Origem de Deduções Diversas:
      * 01 – Créditos Presumidos - Medicamentos;

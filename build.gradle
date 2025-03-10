@@ -33,6 +33,7 @@ dependencies {
     implementation libs.jacksonCore
     implementation libs.jacksonDatabind
     implementation libs.jacksonAnnotations
+    implementation 'org.reflections:reflections:0.10.2'
 
     testImplementation libs.junit.jupiter
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'

@@ -1,6 +1,6 @@
 package io.github.tiagoadmstz.blocks.c;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -9,9 +9,9 @@ import java.math.BigDecimal;
  * Registro C810: Detalhamento do Cupom Fiscal Eletrônico (Código 59) – PIS/Pasep e Cofins.
  */
 @Data
-public class DetalhamentoCfePisCofins extends AbstractEfdBlockPart {
+public class DetalhamentoCfePisCofins implements EfdBlockPart {
 
-    private final String reg = "C810";
+    private final String register = "C810";
     private Number cfop;
     private BigDecimal vlItem;
     private String codItem;

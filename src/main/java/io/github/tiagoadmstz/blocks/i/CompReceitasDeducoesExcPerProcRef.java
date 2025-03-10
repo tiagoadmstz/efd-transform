@@ -1,15 +1,15 @@
 package io.github.tiagoadmstz.blocks.i;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 /**
  * Registro I299: Processo Referenciado.
  */
 @Data
-public class CompReceitasDeducoesExcPerProcRef extends AbstractEfdBlockPart {
+public class CompReceitasDeducoesExcPerProcRef implements EfdBlockPart {
 
-    private final String reg = "I299";
+    private final String register = "I299";
     private String numProc;
     /**
      * Indicador da origem do processo:

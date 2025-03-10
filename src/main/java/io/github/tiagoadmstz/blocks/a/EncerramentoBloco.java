@@ -1,11 +1,11 @@
 package io.github.tiagoadmstz.blocks.a;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 @Data
-public class EncerramentoBloco extends AbstractEfdBlockPart {
+public class EncerramentoBloco implements EfdBlockPart {
 
-    private final String reg = "A990";
+    private final String register = "A990";
     private Number qtdLinA;
 }

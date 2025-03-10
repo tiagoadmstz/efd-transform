@@ -1,6 +1,6 @@
 package io.github.tiagoadmstz.blocks.zero;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -9,9 +9,9 @@ import java.time.LocalDate;
  * Registro 0500: Plano de Contas Contábeis
  */
 @Data
-public class PlanoContasContabeis extends AbstractEfdBlockPart {
+public class PlanoContasContabeis implements EfdBlockPart {
 
-    private final String reg = "0500";
+    private final String register = "0500";
     private LocalDate dtAlt;
     /**
      * Código da natureza da conta/grupo de contas:

@@ -1,18 +1,20 @@
 package io.github.tiagoadmstz.blocks.d;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Registro D350: Resumo Diário de Cupom Fiscal Emitido Por ECF - (Código: 2E, 13, 14, 15 e 16).
  */
 @Data
-public class ResumoDiarioCupomFiscalEcf extends AbstractEfdBlockPart {
+public class ResumoDiarioCupomFiscalEcf implements EfdBlockPart {
 
-    private final String reg = "D350";
+    private final String register = "D350";
     private String codMod;
     private String ecfMod;
     private String ecfFab;
@@ -35,4 +37,15 @@ public class ResumoDiarioCupomFiscalEcf extends AbstractEfdBlockPart {
     private BigDecimal aliqCofinsQuant;
     private BigDecimal vlCofins;
     private String codCta;
+    private final List<ResumoDiarioCupomFiscalEcfProcRef> resumoDiarioCupomFiscalEcfProcRefs;
+
+    public ResumoDiarioCupomFiscalEcf() {
+        this.resumoDiarioCupomFiscalEcfProcRefs = new ArrayList<>(1);
+    }
+
+    @Override
+    public void setByLine(List<String> blockLines) {
+        EfdBlockPart.super.setByLine(blockLines);
+        setPartListByBlock(blockLines, "D359", resumoDiarioCupomFiscalEcfProcRefs, ResumoDiarioCupomFiscalEcfProcRef.class);
+    }
 }

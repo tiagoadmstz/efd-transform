@@ -1,6 +1,6 @@
 package io.github.tiagoadmstz.blocks.c;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -9,9 +9,9 @@ import java.math.BigDecimal;
  * Registro C195: Detalhamento da Consolidação - Operações de Aquisição Com Direito a Crédito, e Operações de Devolução de Compras e Vendas – Cofins.
  */
 @Data
-public class OperacaoAquisicaoCofins extends AbstractEfdBlockPart {
+public class OperacaoAquisicaoCofins implements EfdBlockPart {
 
-    private final String reg = "C195";
+    private final String register = "C195";
     private String cnpjCpfPart;
     private Number cstCofins;
     private Number cfop;

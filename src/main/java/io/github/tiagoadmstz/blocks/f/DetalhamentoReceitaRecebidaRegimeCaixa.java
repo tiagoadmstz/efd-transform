@@ -1,6 +1,6 @@
 package io.github.tiagoadmstz.blocks.f;
 
-import io.github.tiagoadmstz.commons.AbstractEfdBlockPart;
+import io.github.tiagoadmstz.interfaces.EfdBlockPart;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -9,9 +9,9 @@ import java.math.BigDecimal;
  * Registro F525: Composição da Receita Escriturada no Período – Detalhamento da Receita Recebida pelo Regime de Caixa.
  */
 @Data
-public class DetalhamentoReceitaRecebidaRegimeCaixa extends AbstractEfdBlockPart {
+public class DetalhamentoReceitaRecebidaRegimeCaixa implements EfdBlockPart {
 
-    private final String reg = "F525";
+    private final String register = "F525";
     private BigDecimal vlRec;
     private String indRec;
     private String cnpjCpf;
